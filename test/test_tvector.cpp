@@ -191,7 +191,12 @@ TEST(TDynamicVector, can_subtract_vectors_with_equal_size)
 	res[0] = -1;
 	res[2] = 100;
 	ans = v1 - v2;
-	EXPECT_EQ(ans, res);
+	bool flag = false;
+	if (ans == res)
+	{
+		flag = true;
+	}
+	EXPECT_EQ(flag, true);
 }
 
 TEST(TDynamicVector, cant_subtract_vectors_with_not_equal_size)
