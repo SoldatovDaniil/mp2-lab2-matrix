@@ -123,8 +123,7 @@ TEST(TDynamicVector, can_add_scalar_to_vector)
 	res[1] = 3;
 	res[2] = 3;
 	int val = 3;
-	TDynamicVector<int> ans(3);
-	ans = v + val;
+	TDynamicVector<int> ans = v + val;
 	EXPECT_EQ(ans, res);
 }
 
@@ -136,8 +135,7 @@ TEST(TDynamicVector, can_subtract_scalar_from_vector)
 	res[1] = -3;
 	res[2] = -3;
 	int val = 3;
-	TDynamicVector<int> ans;
-	ans = ans - val;
+	TDynamicVector<int> ans = v - val;
 	EXPECT_EQ(ans, res);
 }
 
@@ -152,8 +150,7 @@ TEST(TDynamicVector, can_multiply_scalar_by_vector)
 	v[1] = 2;
 	v[2] = 3;
 	int val = 3;
-	TDynamicVector<int> ans;
-	ans = ans * val;
+	TDynamicVector<int> ans = v * val;
 	EXPECT_EQ(ans, res);
 }
 

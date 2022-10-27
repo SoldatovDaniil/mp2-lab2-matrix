@@ -69,8 +69,15 @@ public:
     TDynamicVector(TDynamicVector&& v) noexcept
     {
         sz = v.sz;
-        delete[]pMem;
-        pMem = new T[sz]();
+        if (pMem = nullptr)
+        {
+            pMem = new T[sz]();
+        }
+        else
+        {
+            delete[]pMem;
+            pMem = new T[sz]();
+        }
         for (int i = 0; i < sz; i++)
         {
             pMem[i] = v.pMem[i];
@@ -235,12 +242,12 @@ public:
         {
             throw "Can't do addition, Sizes should be equal";
         }
-        TDynamicVector tmp(*this);
+        TDynamicVector res(*this);
         for (int i = 0; i < sz; i++)
         {
-            tmp.pMem[i] += v.pMem[i];
+            res.pMem[i] += v.pMem[i];
         }
-        return tmp;
+        return res;
     }
 
     TDynamicVector operator-(const TDynamicVector& v)
