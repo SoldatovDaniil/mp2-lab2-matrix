@@ -124,7 +124,8 @@ TEST(TDynamicMatrix, can_add_matrices_with_equal_size)
     TDynamicMatrix<int>v2(3);
     v1[1][1] = 1;
     v2[1][1] = 2;
-    TDynamicMatrix<int>ans = v1 + v2;
+    TDynamicMatrix<int>ans(3);
+    ans = v1 + v2;
     TDynamicMatrix<int>res(3);
     res[1][1] = 3;
     EXPECT_EQ(ans, res);
@@ -143,7 +144,8 @@ TEST(TDynamicMatrix, can_subtract_matrices_with_equal_size)
     TDynamicMatrix<int>v2(3);
     v1[1][1] = 5;
     v2[1][1] = 3;
-    TDynamicMatrix<int>ans = v1 - v2;
+    TDynamicMatrix<int>ans(3);
+    ans = v1 - v2;
     TDynamicMatrix<int>res(3);
     res[1][1] = 2;
     EXPECT_EQ(ans, res);
