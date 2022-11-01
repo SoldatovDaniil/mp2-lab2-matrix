@@ -37,7 +37,7 @@ TEST(TDynamicVector, copied_vector_has_its_own_memory)
 	TDynamicVector<int>v1(10);
 	TDynamicVector<int>v2(v1);
 	v2[0] = 1;
-	EXPECT_NE(v1, v2);
+	EXPECT_NE(&v1[0], &v2[0]);
 }
 
 TEST(TDynamicVector, can_get_size)
@@ -219,4 +219,21 @@ TEST(TDynamicVector, cant_multiply_vectors_with_not_equal_size)
 	TDynamicVector<int> v1(3);
 	TDynamicVector<int> v2(4);
 	EXPECT_ANY_THROW(v1 * v2);
+}
+
+TEST(TdynamicVector, move_operator_can_make_object)
+{
+	TDynamicVector<int> v1(4);
+	v1[0] = 11;
+	TDynamicVector<int> v2 = std::move(v1);
+	EXPECT_EQ(11, v2[0]);
+}
+
+TEST(TDynamicVector, move_constructor_nulls_object_but_not_delete) 
+{
+	TDynamicVector<int> v1(4);
+	v1[2] = -50;
+	TDynamicVector<int> v2 = std::move(v1);
+	ASSERT_NO_THROW(v1.size());
+	EXPECT_EQ(0, v1.size());
 }
